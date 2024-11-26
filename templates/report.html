@@ -1,0 +1,19 @@
+<!-- templates/report.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Relatório de Tarefas - Gerenciador de Tarefas{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">Relatório de Tarefas</h4>
+    </div>
+    <div class="card-body">
+        <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ report }}</pre>
+        <div class="d-flex justify-content-end">
+            <a href="{{ url_for('generate_report') }}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+/* static/css/styles.css */
+
+/* Personalizar o rodapé */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Ajustar a altura do container principal para evitar sobreposição com o rodapé */
+.container {
+    padding-bottom: 60px;
+}
+
+/* Estilizar badges */
+.badge-info {
+    background-color: #17a2b8;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}

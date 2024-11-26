@@ -1,0 +1,31 @@
+<!-- templates/generate_report.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Gerar Relatório - Gerenciador de Tarefas{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-secondary text-white">
+        <h4 class="mb-0">Gerar Relatório de Tarefas</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Selecione as Tarefas para o Relatório:</label>
+                <div class="form-check">
+                    {% for task in tasks %}
+                        <input class="form-check-input" type="checkbox" name="task_ids" value="{{ task.id }}" id="task{{ task.id }}">
+                        <label class="form-check-label" for="task{{ task.id }}">
+                            {{ task.task_name }} - R${{ "%.2f"|format(task.cost) }} - {{ task.due_date.strftime('%d/%m/%Y') }}
+                        </label><br>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success">Gerar Relatório</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

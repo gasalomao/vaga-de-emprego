@@ -1,0 +1,38 @@
+<!-- templates/chat.html -->
+
+{% extends "base.html" %}
+
+{% block title %}Chatbot - Gerenciador de Tarefas{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Chatbot</h4>
+    </div>
+    <div class="card-body" style="height: 400px; overflow-y: scroll;">
+        {% for message in messages %}
+            {% if message.role == 'user' %}
+                <div class="d-flex justify-content-end mb-2">
+                    <div class="bg-primary text-white p-2 rounded">
+                        <strong>Você:</strong> {{ message.content }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="d-flex justify-content-start mb-2">
+                    <div class="bg-light text-dark p-2 rounded">
+                        <strong>Chatbot:</strong> {{ message.content }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="card-footer">
+        <form method="post">
+            <div class="input-group">
+                <input type="text" name="message" class="form-control" placeholder="Digite sua mensagem..." required>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
