@@ -23,7 +23,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY") or "chave_secreta_padrao_para_desenvolvimento"
 
 # Configuração do banco de dados
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL") or "sqlite:///tasks.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Inicializar o banco de dados
@@ -343,8 +343,5 @@ with app.app_context():
     db.create_all()
 
 # Função de entrada para o Vercel
-def handler(request):
-    return app(request.environ, start_response)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+def handler(request, start_response):
+    return app.wsgi_app(request.environ, start_response)
